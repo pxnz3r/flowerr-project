@@ -1,73 +1,62 @@
-# React + TypeScript + Vite
+# Generative Study: Organic Flow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web-based generative art installation that procedurally grows stems and flowers in a watercolor painting style. Built with React, TypeScript, and the Canvas API.
 
-Currently, two official plugins are available:
+[**View Live Demo**](https://pxnz3r.github.io/flowerr-project/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## React Compiler
+Organic Flow is a generative art piece that simulates botanical growth in real time. Stems emerge from the bottom of the canvas, curve organically, sprout leaves, and bloom into procedurally-generated flowers with varied forms — cup, star, cluster, and fan shapes. SVG turbulence filters give the artwork a soft watercolor-on-paper aesthetic.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **React 19** — Component architecture with hooks
+- **TypeScript** — Type safety
+- **Vite** — Build tool and dev server
+- **Tailwind CSS v4** — Styling
+- **Canvas API** — Procedural rendering and animation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Project Structure
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── App.tsx                 # Root component
+├── main.tsx                # Entry point
+├── index.css               # Global styles and CSS variables
+└── components/
+    ├── GenerativeArt.tsx   # Canvas rendering, growth logic, animation loop
+    ├── SVGFilters.tsx      # Watercolor and paper-noise SVG filter definitions
+    ├── PaperTexture.tsx    # Subtle paper texture overlay
+    └── UILayer.tsx         # Title typography and poem display
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### Commands
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start dev server with HMR |
+| `npm run build` | Type-check and build for production |
+| `npm run preview` | Preview the production build |
+| `npm run lint` | Run ESLint |
+| `npm run deploy` | Build and publish to GitHub Pages |
+
+## How It Works
+
+- **Stem Growth**: Each stem is a series of segments with randomized angular drift, giving a natural curved appearance.
+- **Leaves**: Generated along stems at random intervals, drawn as stretched ellipses.
+- **Flowers**: Six distinct types with randomized palettes drawn from a muted earth-tone scheme. Each flower has layered petals and a stamen center.
+- **Watercolor Effect**: SVG `feTurbulence` + `feDisplacementMap` creates pigment bleeding. CSS `saturate`, `contrast`, and `brightness` filters simulate paper absorption.
+- **Animation**: A `requestAnimationFrame` loop drives stem elongation and flower blooming, ending once all elements are fully grown.
+
+## License
+
+MIT
