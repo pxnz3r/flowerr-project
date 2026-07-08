@@ -9,8 +9,6 @@
 
 A web-based generative art installation that procedurally grows stems and flowers in a watercolor painting style. Each visit creates a unique botanical composition.
 
-Found on [variant.so](https://variant.so)
-
 [**View Live Demo**](https://pxnz3r.github.io/flowerr-project/)
 
 ## Features
